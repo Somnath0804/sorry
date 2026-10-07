@@ -1,0 +1,480 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>I'm Sorry 🐻🐱</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8) 0 4px, transparent 5px),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,.7) 0 3px, transparent 4px),
+        linear-gradient(135deg, #fff1f3, #fce8df, #f8e5ed);
+
+    background-size: 140px 140px, 170px 170px, cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+    color: #654b4b;
+}
+
+/* floating decorations */
+
+.float {
+    position: fixed;
+    pointer-events: none;
+    animation: float 5s ease-in-out infinite;
+    z-index: 0;
+}
+
+.heart1 {
+    top: 10%;
+    left: 8%;
+    font-size: 35px;
+}
+
+.heart2 {
+    bottom: 15%;
+    right: 8%;
+    font-size: 30px;
+    animation-delay: 1s;
+}
+
+.star1 {
+    top: 20%;
+    right: 12%;
+    font-size: 25px;
+    animation-delay: 2s;
+}
+
+.star2 {
+    bottom: 10%;
+    left: 10%;
+    font-size: 22px;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+/* main card */
+
+.container {
+    position: relative;
+    z-index: 2;
+
+    width: min(92%, 600px);
+    padding: 45px 35px 40px;
+
+    background: rgba(255,255,255,.72);
+    backdrop-filter: blur(15px);
+
+    border: 2px solid rgba(255,255,255,.8);
+    border-radius: 35px;
+
+    box-shadow:
+        0 25px 60px rgba(150,105,105,.18),
+        inset 0 1px 0 white;
+
+    text-align: center;
+
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* cats */
+
+.cats {
+    font-size: 65px;
+    margin-bottom: 5px;
+    animation: bounce 3s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(3rem, 9vw, 5rem);
+    line-height: .9;
+
+    color: #a86d75;
+
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #8b6c6c;
+    margin-bottom: 28px;
+}
+
+/* teddy */
+
+.teddy {
+    font-size: 105px;
+    margin: 5px 0 15px;
+
+    filter: drop-shadow(0 8px 5px rgba(130,90,70,.15));
+
+    animation: teddy 3s ease-in-out infinite;
+}
+
+@keyframes teddy {
+    0%,100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg) translateY(-5px);
+    }
+}
+
+/* letter */
+
+.letter {
+    background: #fff9f5;
+    border-radius: 24px;
+    padding: 25px;
+
+    box-shadow:
+        0 8px 25px rgba(120,80,80,.08);
+
+    border: 1px solid #f3ded7;
+
+    margin: 15px auto 25px;
+
+    max-width: 480px;
+}
+
+.letter p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #725959;
+}
+
+.highlight {
+    color: #b86d78;
+    font-weight: 700;
+}
+
+/* button */
+
+button {
+    border: none;
+    outline: none;
+
+    font-family: 'Quicksand', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #e99aa7, #d98594);
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(210,125,140,.3);
+
+    transition: .25s ease;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+
+    box-shadow:
+        0 12px 25px rgba(210,125,140,.4);
+}
+
+button:active {
+    transform: scale(.97);
+}
+
+/* hidden message */
+
+.secret {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    transition:
+        max-height .7s ease,
+        opacity .5s ease,
+        margin .5s ease;
+}
+
+.secret.show {
+    max-height: 250px;
+    opacity: 1;
+    margin-top: 25px;
+}
+
+.secret-box {
+    background: #fff0f3;
+    border-radius: 22px;
+    padding: 22px;
+
+    border: 1px dashed #dfa0aa;
+}
+
+.secret-box p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.signature {
+    margin-top: 12px;
+    font-weight: 700;
+    color: #b56c78;
+}
+
+/* paw prints */
+
+.paws {
+    margin-top: 25px;
+    font-size: 22px;
+    letter-spacing: 8px;
+    opacity: .7;
+}
+
+/* mobile */
+
+@media(max-width:500px) {
+
+    .container {
+        padding: 35px 20px;
+        border-radius: 28px;
+    }
+
+    .cats {
+        font-size: 52px;
+    }
+
+    .teddy {
+        font-size: 85px;
+    }
+
+    .letter {
+        padding: 20px 17px;
+    }
+
+    .letter p,
+    .secret-box p {
+        font-size: 15px;
+    }
+
+    .heart1 {
+        left: 3%;
+    }
+
+    .heart2 {
+        right: 3%;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Floating decorations -->
+
+<div class="float heart1">♡</div>
+<div class="float heart2">♡</div>
+
+<div class="float star1">✦</div>
+<div class="float star2">✧</div>
+
+
+<main class="container">
+
+    <div class="cats">
+        🐱 🐱
+    </div>
+
+    <h1>I'm Sorry...</h1>
+
+    <div class="subtitle">
+        from this little sleepy corner of the internet 🥺
+    </div>
+
+
+    <div class="teddy">
+        🧸
+    </div>
+
+
+    <div class="letter">
+
+        <p>
+            I know I made a mistake...
+            and I'm genuinely sorry. 🥺
+        </p>
+
+        <br>
+
+        <p>
+            I never wanted to make you feel bad,
+            uncomfortable, or upset.
+        </p>
+
+        <br>
+
+        <p>
+            Sometimes I mess things up,
+            but that doesn't mean I don't
+            <span class="highlight">care about you.</span> 🤍
+        </p>
+
+    </div>
+
+
+    <button onclick="openLetter()">
+        🐾 Open the tiny letter 🐾
+    </button>
+
+
+    <div class="secret" id="secret">
+
+        <div class="secret-box">
+
+            <p>
+                🐱 “Meow...” says the cat.
+            </p>
+
+            <p>
+                🧸 “Give them another chance...” says the teddy.
+            </p>
+
+            <br>
+
+            <p>
+                And I say...
+                <strong>I'm really, really sorry. 🤍</strong>
+            </p>
+
+            <div class="signature">
+                — from someone who feels bad 🥺
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="paws">
+        🐾 ♡ 🐾 ♡ 🐾
+    </div>
+
+</main>
+
+
+<script>
+
+function openLetter() {
+
+    const letter = document.getElementById("secret");
+
+    letter.classList.toggle("show");
+
+    if (letter.classList.contains("show")) {
+
+        createHearts();
+
+    }
+}
+
+
+function createHearts() {
+
+    for (let i = 0; i < 15; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.innerHTML = ["♡","♥","🐾","✨"][Math.floor(Math.random()*4)];
+
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-30px";
+        heart.style.fontSize = (15 + Math.random()*20) + "px";
+        heart.style.pointerEvents = "none";
+        heart.style.zIndex = "10";
+
+        document.body.appendChild(heart);
+
+        const duration = 2 + Math.random()*2;
+
+        heart.animate(
+            [
+                {
+                    transform: "translateY(0) rotate(0deg)",
+                    opacity: 1
+                },
+                {
+                    transform:
+                        `translateY(-100vh) rotate(${Math.random()*360}deg)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: duration * 1000,
+                easing: "ease-out"
+            }
+        );
+
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }
+}
+
+</script>
+
+</body>
+</html>
+```
